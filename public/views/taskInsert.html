@@ -1,0 +1,102 @@
+<!doctype html>
+<html charset="utf-8" lang="en">
+	<head>
+		<title>Task assign Using knockout</title>
+		<!--link rel="stylesheet" href="bootstrap-3.3.5/css/bootstrap.min.css">
+		<script type="text/javascript" src="knockout-3.3.0.js"></script>
+		<script type="text/javascript" src="jquery.js"></script-->
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/style.css">
+		<meta charset="utf-8">
+		<script type="text/javascript" src="../js/vendor/jquery.js"></script>
+		<script type="text/javascript" src="../js/vendor/knockout-3.3.0.js"></script>
+
+	</head>
+	<body>
+		<div class='container'>
+			<div class='jumbotron'>
+				<h1> Task Assignment test Project </h1>
+			</div>
+			<!-- Template: New Born Task -->
+			<script id="newTaskTemplate" type="text/html">
+				<div data-bind='attr: {id:taskId}' class="well">
+					<p style="text-align:right"><span class="glyphicon glyphicon-remove" data-bind="click:removeTask"></span></p>
+					<p>Task Name:<span data-bind='text:taskName'></span></p>
+					<p>Task Id:<span data-bind='text:taskId'></span></p>
+					<p>Duration:<span data-bind='text:taskDuration'></span></p>
+					<p><button data-bind="click:processTask" >Start for processing</button></p>
+				</div>
+			</script>
+			<script type="text/html" id="processTaskTemplate">
+				<div data-bind='attr:{id:taskId}' class="well">
+					<p style="text-align=right"><span class="glyphicon glyphicon-remove" data-bind='click:removeTask'></span></p>
+					<p>Task Name:<span data-bind='text:taskName'></span></p>
+					<p>Task Id:<span data-bind='text:taskId'></span></p>
+					<p>Duration:<span data-bind='text:taskDuration'></span></p>
+					
+				</div>
+			</script>
+			<div class="row">
+				<div class="col-sm-6">
+					<div>
+						<form id="formSubmit" data-bind="submit:createTask">
+							Task Name:
+							<input type="text" id="Name" placeholder="Enter Task Name" data-bind="value:taskName " required/><br/>
+							Task Duration:
+							<input type="text" id="Duration" placeholder="Enter Duration" required data-bind="value:taskDuration"/><br/>
+							<button type="submit" id="taskSubmit">Submit</button>
+						</form>
+					</div>
+					<div id="taskContainner">
+						<div data-bind="template:{name:'newTaskTemplate',foreach:taskList}, visible:true "></div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="row">
+						<div class="col-sm-4" id="processing"><h3>Processing</h3></div>
+						<div class="col-sm-4" id="development"><h3>Development</h3></div>
+						<div class="col-sm-4" id="design"><h3>Design</h3></div>
+					</div>
+				<div>
+			</div>
+		</div>
+		<!--script type="text/javascript">
+			var taskController=function(){
+				//this.taskId=ko.observable("");
+				this.taskName=ko.observable();
+				this.taskDuration=ko.observable();
+				self.createTask=function(){
+					console.log(this.taskName);
+
+					//var task=new taskModel("null",self.taskName,self.taskDuration,self.taskStatus);
+					//console.log(task)
+				};
+			};
+			ko.applyBindings(taskController);
+		</script-->
+		
+		<script type="text/javascript" src="../js/taskController.js"></script>
+		<!--script type="text/javascript" src="../viewModels/taskModel.js"></script-->
+		<script src="../js/vendor/bootstrap.min.js"></script>
+		<!--div>
+			<form id="formSubmit" data-bind="submit:add">
+				name:<input type="text" data-bind="value:name"/>
+				
+					<button id="submit" type="submit">submit</button>
+			</form>
+		</div>
+		<script type="text/javascript">
+			var viewModel=function(){
+				
+
+				this.name=ko.observable("");
+				//this.taskDuration=ko.observable();
+				this.add=function(){
+					console.log(this.name);
+				};
+				//console.log(name)
+			};
+			ko.applyBindings(new viewModel());
+		</script-->
+	</body>
+</html>
